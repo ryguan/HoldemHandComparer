@@ -6,9 +6,13 @@ class Card:
         self.rank = rank
         self.suit = suit
     def __str__(self):
-        return str(self.rank)+ " " +str(self.suit) + "\n"
+        return "(" + str(self.rank) + "," + str(self.suit) + ")"
     def equal(card1, card2):
         return self.rank == othercard.rank and self.suit == othercard.suit
+    def rank():
+        return self.rank
+    def __eq__(self, other):
+        return self.rank == other.rank and self.suit == other.suit
 def cardCompare(card1, card2):
     if(card1.rank > card2.rank):
         return -1
@@ -240,11 +244,11 @@ def sevenCardHandCompare(hand1, hand2):
                 hand1notQuad = -1
                 hand2notQuad = -1
                 for i in range(7):
-                    if not hand1[i].rank == hand1.hasQuads() and hand1notQuad == -1:
-                        hand1notQuad = hand1[i].rank
+                    if not hand1.cardArray[i].rank == hand1.hasQuads()[1]:
+                        hand1notQuad = hand1.cardArray[i].rank
                 for i in range(7):
-                    if not hand2[i].rank == hand2.hasQuads() and hand2notQuad == -1:
-                        hand2notQuad = hand2[i].rank
+                    if not hand2.cardArray[i].rank == hand2.hasQuads()[1]:
+                        hand2notQuad = hand2.cardArray[i].rank
                 return hand1notQuad - hand2notQuad
             return hand1.hasQuads()[1] - hand2.hasQuads()[1]
 
@@ -312,6 +316,7 @@ def sevenCardHandCompare(hand1, hand2):
                         return hand1notPair[2] - hand2notPair[2]
                     return hand1notPair[1] - hand2notPair[1]
                 return hand1notPair[0] - hand2notPair[0]
+
 
             return hand1.hasPair()[1] - hand2.hasPair()[1]
 
@@ -489,7 +494,7 @@ def main():
     #testKingsFullofAces()
     #testQuad2s()
     #testStraightFlush()
-    testQuadsvsQuads()
+    #testQuadsvsQuads()
     testFlushoverFlush()
 if __name__ == "__main__":
     main()
